@@ -1,0 +1,8 @@
+# Ignore specific directories
+data/
+references/
+raw_data/
+plots/
+logs/
+results/
+
