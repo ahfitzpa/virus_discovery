@@ -1,22 +1,0 @@
-00:00 37Mb      0.1% Reading /home/people/fitzpatria/scratch/Serratus/references/peribunyaviride/RdRp_pp_peribunyaviride.fa00:00 41Mb    100.0% Reading /home/people/fitzpatria/scratch/Serratus/references/peribunyaviride/RdRp_pp_peribunyaviride.fa
-00:00 7.2Mb     0.1% Masking (fastamino)                                                                                   00:00 7.2Mb   100.0% Masking (fastamino)
-00:00 46Mb      0.1% Word stats         00:00 49Mb    100.0% Word stats
-00:00 49Mb    100.0% Alloc rows
-00:00 49Mb      0.1% Build index00:00 49Mb    100.0% Build index
-00:00 70Mb   CPU has 44 cores, defaulting to 10 threads
-
-WARNING: Max OMP threads 5
-
-00:00 70Mb      0.1% Searching uniques.fa, 0.0% matched00:01 109Mb     0.2% Searching uniques.fa, 0.8% matched00:02 130Mb    75.3% Searching uniques.fa, 0.2% matched00:02 130Mb   100.0% Searching uniques.fa, 0.1% matched
-grep: /path/to/your/source_info.txt: No such file or directory
-00:00 37Mb      0.1% Reading /home/people/fitzpatria/scratch/Serratus/references/phenuiviridae/dRp_pp_phenuiviridae.fa00:00 41Mb    100.0% Reading /home/people/fitzpatria/scratch/Serratus/references/phenuiviridae/dRp_pp_phenuiviridae.fa
-00:00 7.2Mb     0.1% Masking (fastamino)                                                                              00:00 7.2Mb   100.0% Masking (fastamino)
-00:00 46Mb      0.1% Word stats         00:00 49Mb    100.0% Word stats
-00:00 49Mb    100.0% Alloc rows
-00:00 49Mb      0.1% Build index00:00 49Mb    100.0% Build index
-00:00 70Mb   CPU has 44 cores, defaulting to 10 threads
-
-WARNING: Max OMP threads 5
-
-00:00 70Mb      0.1% Searching uniques.fa, 0.0% matched00:01 131Mb    50.1% Searching uniques.fa, 0.4% matched00:01 131Mb   100.0% Searching uniques.fa, 0.3% matched
-grep: /path/to/your/source_info.txt: No such file or directory
