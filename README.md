@@ -31,6 +31,13 @@ This script fetches metadata for the identified SRA accessions, focusing on run 
 
     Usage: ./metadata.sh
 
+## Script 5: Centroid Approach (04.Centroid_Approach.sh)
+
+This script implements a centroid approach to identify novel sOTUs from Serratus and relies on Serratus RdRp assigned taxonomy. This script uses the custom Python script (sql_query_serratus.py) to extract and cross-reference relevant information such as taxonomy, palmprint sequence and associated SRA accession for the sOTUs of interest.
+
+    Usage: ./scripts/04.Centroid_Approach.sh
+
+
 ## Packages and tools used in this project: 
 * edirect
 * palmscan
