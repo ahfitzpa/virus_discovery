@@ -1,0 +1,259 @@
+ERROR: Unknown shell type '(load)'
+Unable to parse esummary response json: 
+. Will retry once.Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/requests/models.py", line 971, in json
+    return complexjson.loads(self.text, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 556, in sra_metadata
+    efetch_result = self.get_efetch_response("sra", srp)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 330, in get_efetch_response
+    esearch_response = request.json()
+                       ^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/requests/models.py", line 975, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+Unable to parse esummary response json: 
+. Will retry once.Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/requests/models.py", line 971, in json
+    return complexjson.loads(self.text, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 556, in sra_metadata
+    efetch_result = self.get_efetch_response("sra", srp)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 330, in get_efetch_response
+    esearch_response = request.json()
+                       ^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/requests/models.py", line 975, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 582, in sra_metadata
+    if not run_json:
+           ^^^^^^^^
+UnboundLocalError: cannot access local variable 'run_json' where it is not associated with a value
+Unable to parse esummary response json: 
+. Will retry once.Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/requests/models.py", line 971, in json
+    return complexjson.loads(self.text, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 556, in sra_metadata
+    efetch_result = self.get_efetch_response("sra", srp)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 330, in get_efetch_response
+    esearch_response = request.json()
+                       ^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/requests/models.py", line 975, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+Unable to parse esummary response json: 
+. Will retry once.Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 582, in sra_metadata
+    if not run_json:
+           ^^^^^^^^
+UnboundLocalError: cannot access local variable 'run_json' where it is not associated with a value
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 582, in sra_metadata
+    if not run_json:
+           ^^^^^^^^
+UnboundLocalError: cannot access local variable 'run_json' where it is not associated with a value
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 582, in sra_metadata
+    if not run_json:
+           ^^^^^^^^
+UnboundLocalError: cannot access local variable 'run_json' where it is not associated with a value
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 582, in sra_metadata
+    if not run_json:
+           ^^^^^^^^
+UnboundLocalError: cannot access local variable 'run_json' where it is not associated with a value
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 582, in sra_metadata
+    if not run_json:
+           ^^^^^^^^
+UnboundLocalError: cannot access local variable 'run_json' where it is not associated with a value
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 582, in sra_metadata
+    if not run_json:
+           ^^^^^^^^
+UnboundLocalError: cannot access local variable 'run_json' where it is not associated with a value
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 582, in sra_metadata
+    if not run_json:
+           ^^^^^^^^
+UnboundLocalError: cannot access local variable 'run_json' where it is not associated with a value
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 582, in sra_metadata
+    if not run_json:
+           ^^^^^^^^
+UnboundLocalError: cannot access local variable 'run_json' where it is not associated with a value
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/requests/models.py", line 971, in json
+    return complexjson.loads(self.text, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/people/fitzpatria/tools/pysradb/bin/pysradb", line 10, in <module>
+    sys.exit(parse_args())
+             ^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 1172, in parse_args
+    metadata(
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/cli.py", line 68, in metadata
+    df = sradb.sra_metadata(
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 556, in sra_metadata
+    efetch_result = self.get_efetch_response("sra", srp)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/pysradb/sraweb.py", line 330, in get_efetch_response
+    esearch_response = request.json()
+                       ^^^^^^^^^^^^^^
+  File "/home/people/fitzpatria/tools/pysradb/lib/python3.11/site-packages/requests/models.py", line 975, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+slurmstepd: error: *** JOB 2357048 ON sonic56 CANCELLED AT 2023-11-27T03:24:31 DUE TO TIME LIMIT ***
