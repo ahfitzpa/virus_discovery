@@ -6,7 +6,8 @@ project_dir="Serratus"
 sOTU="/home/people/fitzpatria/databases/palmdb-main/2021-03-14/uniques.fa"
 source_info="$my_dir/$project_dir/source_info.txt"
 pysradb_dir="/home/people/fitzpatria/tools/pysradb"
-convert_fasta="scratch/Serratus/scripts/convert_tsv_to_fasta.py"
+convert_fasta="/home/people/fitzpatria/scratch/Serratus/scripts/convert_csv_to_fasta.py"
+sql_serratus="/home/people/fitzpatria/scratch/Serratus/scripts/sql_query_serratus.py"
 
 # Ensure project directory structure
 project_structure=("data" "logs" "plots" "raw_data" "references" "results" "scripts")

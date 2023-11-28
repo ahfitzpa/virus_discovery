@@ -40,7 +40,7 @@ fetch_metadata() {
     filtered_run_ids_file="$metadata_dir/${virus_name}_filtered_run_ids.txt"
     touch "$filtered_run_ids_file" || { echo "Error: Unable to create filtered run IDs file for $virus_name"; exit 1; }
     
-    awk -F',' 'NR > 1 && $4 > 2 {print $2}' "$virus_file" > "$filtered_run_ids_file" || { echo "Error: Unable to filter run IDs for $virus_name"; exit 1; }
+    awk -F',' 'NR > 1 && $4 > 6 {print $2}' "$virus_file" > "$filtered_run_ids_file" || { echo "Error: Unable to filter run IDs for $virus_name"; exit 1; }
     
     # Fetch metadata for each run_id
     echo "Fetching metadata for $virus_name..."
