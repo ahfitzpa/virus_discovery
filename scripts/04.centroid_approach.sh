@@ -27,6 +27,12 @@ database="summary"
 user="public_reader"
 export PGPASSWORD="serratus"
 
+# Download database for USEARCH later
+psql -h "$host" -d "$database" -U "$user" -c "\COPY (SELECT sotu, palmprint FROM palmdb2) TO "$my_dir/$project_dir/references/serratus/sotus.palmprint.csv" WITH CSV HEADER"
+
+# Convert output to a fasta file
+python $convert_fasta "$my_dir/$project_dir/references/serratus/sotus.palmprint.csv" "$my_dir/$project_dir/references/serratus/sotus.palmprint.fasta"
+
 # Function to process each virus family
 process_family() {
     local family="$1"
@@ -45,7 +51,7 @@ process_family() {
         echo "Error: Failed to search for $family viruses in Serratus."
         exit 1
     fi
-
+    
     ####################################################################################################################################################################
     # Fetch additional information from palmdb2 based on palm IDs for the specific virus family
     input_fasta="$output_sotu/input_${family,,}_fasta.csv"
@@ -67,7 +73,7 @@ process_family() {
     python $convert_fasta "$input_fasta" "$output_sotu/centroid_${family,,}.fasta"
     ###################################################################################################################################################################
     # Global align each virus family sOTU to all sotus in serratus to define a "local"
-    if ! usearch -usearch_global "$sOTU" -db "$output_sotu/centroid_${family,,}.fasta" -id 0.45 \
+    if ! usearch -usearch_global "$my_dir/$project_dir/references/serratus/sotus.palmprint.fasta" -db "$output_sotu/centroid_${family,,}.fasta" -id 0.45 \
       -blast6out  "$output_sotu/${family,,}_palm.b6" -alnout  "$output_sotu/${family,,}_palm.aln" -fastapairs  "$output_sotu/${family,,}_palm.pairfa.fasta"; then
         echo "Error: Failed to perform global alignment for $family."
         exit 1
@@ -75,7 +81,7 @@ process_family() {
 
     ####################################################################################################################################################################
     # Extract sOTUs with percent identity not equal to 100%
-    if ! awk -F',' '$6 != 100' "$family_output" > "$output_sotu/non_100_${family,,}.csv"; then
+    if ! awk -F',' '$3 != 100' "$family_output" > "$output_sotu/non_100_${family,,}.csv"; then
         echo "Error: Failed to extract sOTUs with non-100% identity from $family."
         exit 1
     fi
@@ -94,8 +100,9 @@ process_family() {
     if ! psql -h "$host" -d "$database" -U "$user" -c "\COPY (
         SELECT * FROM palm_tax
         WHERE
-            palm_id IN ($palm_ids)
+            sotu IN ($palm_ids)
             AND centroid='t'
+            AND gb_acc IS NULL
         ORDER BY sotu DESC
     ) TO '$output_sotu/unique_${family,,}.csv' WITH CSV HEADER"; then
         echo "Error: Failed to fetch additional information for $family from palm_tax."
@@ -104,7 +111,7 @@ process_family() {
 
     ####################################################################################################################################################################
     # Count unique sOTUs
-    unique_count=$(awk -F',' -v family="$family" '$13==family && $6 != 100' "$output_sotu/unique_${family,,}.csv" | cut -d',' -f1 | sort -u | wc -l)
+    unique_count=$(awk -F',' -v family="$family" '$13==family && $3 != 100' "$output_sotu/unique_${family,,}.csv" | cut -d',' -f1 | sort -u | wc -l)
 
     echo "Number of unique sOTUs in $family: $unique_count"
 }
