@@ -33,13 +33,45 @@ This script fetches metadata for the identified SRA accessions, focusing on run 
 
 ## Script 5: Centroid Approach (04.Centroid_Approach.sh)
 
-This script implements a centroid approach to identify novel sOTUs from Serratus and relies on Serratus RdRp assigned taxonomy. This script uses the custom Python script (sql_query_serratus.py) to extract and cross-reference relevant information such as taxonomy, palmprint sequence and associated SRA accession for the sOTUs of interest.
+This script implements the centroid approach to identify novel sOTUs (sequence variants) from the Serratus database. The centroid approach involves the following steps:
 
-    Usage: ./scripts/04.Centroid_Approach.sh
+1. **Database Setup:**
+   - The script establishes a connection to the Serratus database, downloading essential information from the palmdb2 and palm_tax tables.
 
+2. **SOTU Retrieval:**
+   - It identifies specific virus families, such as Phenuiviridae, Rhabdoviridae, Sedoreoviridae, Peribunyaviridae, Flaviviridae, Togaviridae, Astroviridae, Caliciviridae, Hepeviridae, and Hantaviridae.
+
+3. **Local Alignment:**
+   - For each identified virus family, the script performs a global alignment of the family's sOTUs against all sOTUs present in the Serratus database. This alignment is crucial for defining a "local" alignment specific to the virus family.
+
+4. **Identity Filtering:**
+   - It extracts sOTUs with a percentage identity not equal to 100% and creates a CSV file with non-100% identity sOTUs for further analysis.
+
+5. **Additional Information Retrieval:**
+   - The script fetches additional information from the palmdb2 and palm_tax tables based on palm IDs, ensuring a comprehensive dataset for subsequent steps.
+
+6. **Unique sOTUs Count:**
+   - It counts the number of unique sOTUs for each virus family, excluding those with 100% identity, providing insights into the diversity within each family.
+
+### Usage:
+```bash
+./scripts/04.Centroid_Approach.sh
+
+## Script 6: SRA Cross-Reference (05.sra_cross_reference.sh)
+
+This script performs cross-referencing of Serratus sOTUs with the Sequence Read Archive (SRA) using information from unique CSV files. It extracts relevant SRA accessions for further analysis.
+
+    Usage: ./scripts/05.sra_cross_reference.sh
+
+## Script 7: Metadata Fetch (06.metadata_fetch.sh)
+
+This script fetches metadata for identified SRA accessions, focusing on run IDs and coverage. It utilizes the pysradb tool to query the SRA database and saves the metadata in a structured format for downstream analysis.
+
+    Usage: ./scripts/06.metadata_fetch.sh
 
 ## Packages and tools used in this project: 
 * edirect
+* psql
 * palmscan
 * USEARCH
 * Diamond
