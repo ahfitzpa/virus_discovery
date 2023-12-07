@@ -2,7 +2,7 @@
 #SBATCH --job-name=metadata
 #SBATCH --mail-type END,FAIL
 #SBATCH --mail-user amy.fitzpatrick@ucd.ie
-#SBATCH -t 0-12:00
+#SBATCH -t 0-48:00
 #SBATCH --error=/home/people/fitzpatria/scratch/Serratus/logs/metadata_err_%j.log
 #SBATCH --output=/home/people/fitzpatria/scratch/Serratus/logs/metadata_%j.log
 #SBATCH --cpus-per-task=5

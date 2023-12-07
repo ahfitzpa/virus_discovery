@@ -23,65 +23,6 @@ mkdir -p "$output_dir"
 # Log script start
 echo "Script started at: $(date)"
 
-# Function to process virus
-process_virus() {
-    local family_name="$1"
-    local unique_csv="$2"  # Path to the unique CSV file
-
-    if [ -f "$unique_csv" ]; then
-        # Extract sOTUs from column 1 of the unique CSV file
-        echo "Extracting sOTUs from $unique_csv..."
-        local virus_sotus
-        if virus_sotus=$(cut -d',' -f1 "$unique_csv"); then
-            echo "Done."
-        else
-            echo "Error extracting sOTUs from $unique_csv. Check logs for details."
-            return
-        fi
-
-        # Display unique sOTUs for debugging
-        echo "Unique sOTUs for $family_name: $virus_sotus"
-
-        if [ -z "$virus_sotus" ]; then
-            echo "Error: No sOTUs found in $unique_csv. Skipping family $family_name."
-            log_error "$family_name" "$unique_csv" "Empty input file"
-            return
-        fi
-
-        # Add single quotes around each value in the IN clause using awk
-        local quoted_sotus
-        # Add single quotes around each value in the IN clause using awk
-        quoted_sotus=$(echo "$virus_sotus" | awk -v ORS="," '{print "\x27" $1 "\x27"}' | sed 's/,$//')
-
-
-        # Create a temporary SQL file
-        local sql_file="$output_dir/fetch_sra_info.sql"
-        cat >"$sql_file" <<EOF
-\COPY (SELECT * FROM palm_sra WHERE palm_id IN ($quoted_sotus)) TO '$output_dir/${family_name}_sra_accessions.csv' WITH CSV HEADER
-EOF
-
-        # Print the SQL command for debugging
-        echo "SQL Command:"
-        cat "$sql_file"
-
-        # Fetch sra information from palm_sra
-        if psql -h "$host" -d "$database" -U "$user" -f "$sql_file"; then
-            echo "Successfully fetched SRA information for $family_name from palm_sra."
-            # Log the number of rows written to the output file
-            log_success "$family_name" "$output_dir/${family_name}_sra_accessions.csv"
-        else
-            echo "Error: Failed to fetch SRA information for $family_name from palm_sra."
-            log_error "$family_name" "$output_dir/${family_name}_sra_accessions.csv" "Query error details"
-        fi
-
-        # Remove the temporary SQL file
-        rm "$sql_file"
-    else
-        echo "Error: Could not find unique CSV file for family $family_name."
-        log_error "$family_name" "$unique_csv" "Missing CSV file"
-    fi
-}
-
 # Function to log errors
 log_error() {
     local family_name="$1"
@@ -99,7 +40,7 @@ log_success() {
     # Log the number of rows written to the output file
     local num_rows
     num_rows=$(wc -l "$output_file" | cut -d ' ' -f 1)
-    echo "Successfully fetched $num_rows rows of SRA information for $family_name from palm_sra."
+    echo "Successfully fetched $num_rows rows of SRA information for $family_name from palm_virome."
     # Check if the file is empty
     if [ "$num_rows" -eq 1 ]; then
         echo "Warning: Output file is empty for $family_name."
@@ -108,22 +49,52 @@ log_success() {
 
 # List of unique CSV files
 unique_csv_files=(
-    "/scratch/fitzpatria/Serratus/data/sOTUs_centroid/Togaviridae/unique_togaviridae.csv"
-    "/scratch/fitzpatria/Serratus/data/sOTUs_centroid/Caliciviridae/unique_caliciviridae.csv"
-    "/scratch/fitzpatria/Serratus/data/sOTUs_centroid/Flaviviridae/unique_flaviviridae.csv"
-    "/scratch/fitzpatria/Serratus/data/sOTUs_centroid/Peribunyaviridae/unique_peribunyaviridae.csv"
-    "/scratch/fitzpatria/Serratus/data/sOTUs_centroid/Hepeviridae/unique_hepeviridae.csv"
-    "/scratch/fitzpatria/Serratus/data/sOTUs_centroid/Hantaviridae/unique_hantaviridae.csv"
-    "/scratch/fitzpatria/Serratus/data/sOTUs_centroid/Astroviridae/unique_astroviridae.csv"
-    "/scratch/fitzpatria/Serratus/data/sOTUs_centroid/Sedoreoviridae/unique_sedoreoviridae.csv"
-    "/scratch/fitzpatria/Serratus/data/sOTUs_centroid/Rhabdoviridae/unique_rhabdoviridae.csv"
-    "/scratch/fitzpatria/Serratus/data/sOTUs_centroid/Phenuiviridae/unique_phenuiviridae.csv"
+    "/home/people/fitzpatria/scratch/Serratus/data/sOTUs_centroid/Togaviridae/unique_togaviridae.csv"
+    "/home/people/fitzpatria/scratch/Serratus/data/sOTUs_centroid/Caliciviridae/unique_caliciviridae.csv"
+    "/home/people/fitzpatria/scratch/Serratus/data/sOTUs_centroid/Flaviviridae/unique_flaviviridae.csv"
+    "/home/people/fitzpatria/scratch/Serratus/data/sOTUs_centroid/Peribunyaviridae/unique_peribunyaviridae.csv"
+    "/home/people/fitzpatria/scratch/Serratus/data/sOTUs_centroid/Hepeviridae/unique_hepeviridae.csv"
+    "/home/people/fitzpatria/scratch/Serratus/data/sOTUs_centroid/Hantaviridae/unique_hantaviridae.csv"
+    "/home/people/fitzpatria/scratch/Serratus/data/sOTUs_centroid/Astroviridae/unique_astroviridae.csv"
+    "/home/people/fitzpatria/scratch/Serratus/data/sOTUs_centroid/Sedoreoviridae/unique_sedoreoviridae.csv"
+    "/home/people/fitzpatria/scratch/Serratus/data/sOTUs_centroid/Rhabdoviridae/unique_rhabdoviridae.csv"
+    "/home/people/fitzpatria/scratch/Serratus/data/sOTUs_centroid/Phenuiviridae/unique_phenuiviridae.csv"
 )
 
 # Iterate over each unique CSV file
 for unique_csv_file in "${unique_csv_files[@]}"; do
     family_name=$(basename "$(dirname "$unique_csv_file")")
-    process_virus "$family_name" "$unique_csv_file"
+
+    # Extract sOTUs from column 1 of the unique CSV file, filtering out empty lines
+    echo "Processing family: $family_name"
+    palm_ids=($(awk -F',' 'NR>1 && $1 != "" {printf "\x27%s\x27,", $1}' "$unique_csv_file" | sed 's/,$//'))
+
+    if [ ${#palm_ids[@]} -eq 0 ]; then
+        echo "Error: No non-empty sOTUs found in $unique_csv_file. Skipping family $family_name."
+        log_error "$family_name" "$unique_csv_file" "Empty or invalid sOTUs"
+        continue
+    fi
+
+    # Construct the COPY command
+    copy_command="COPY (SELECT run, bio_sample, palm_id, sotu FROM palm_virome WHERE sotu IN (${palm_ids[*]})) TO STDOUT WITH CSV HEADER"
+
+    # Debugging: Log the COPY command
+    echo "COPY Command: $copy_command" >> "$output_dir/debug.log"
+
+    # Execute the COPY command using psql
+    if psql -h "$host" -d "$database" -U "$user" -c "$copy_command" > "$output_dir/${family_name}_sra_accessions.csv"; then
+        # Debugging: Log the output of the SQL command
+        echo "Successfully fetched SRA information for $family_name from palm_virome."
+        # Log the number of rows written to the output file
+        log_success "$family_name" "$output_dir/${family_name}_sra_accessions.csv"
+
+        # Count the number of unique palm_ids in the output file
+        unique_palm_ids=$(awk -F',' 'NR>1 {print $3}' "$output_dir/${family_name}_sra_accessions.csv" | sort -u | wc -l)
+        echo "Number of unique palm_ids in ${family_name}_sra_accessions.csv: $unique_palm_ids"
+    else
+        echo "Error: Failed to fetch SRA information for $family_name from palm_virome."
+        log_error "$family_name" "$output_dir/${family_name}_sra_accessions.csv" "Query error details"
+    fi
 done
 
 echo "Script completed at: $(date)"
