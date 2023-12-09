@@ -16,6 +16,12 @@ sra_folder="$PROJECT_BASE_PATH/data/sra_sotu_centroid"
 # Set the path to the metadata destination folder
 metadata_folder="$PROJECT_BASE_PATH/data/SRA_metadata"
 
+# Function to log errors
+log_error() {
+    local error_message="$1"
+    echo "ERROR: $error_message" >&2
+}
+
 # Loop through each CSV file in the SRA Run IDs folder
 for csv_file in "$sra_folder"/*.csv; do
     # Extract virus family name from the CSV file name
@@ -28,18 +34,26 @@ for csv_file in "$sra_folder"/*.csv; do
     # Fetch metadata for each SRA Run ID and save it in individual files
     while IFS=, read -r run_id _; do
         if [ -n "$run_id" ]; then
-            # Fetch metadata using efetch and save it to a file
-            efetch -db sra -id "$run_id" > "$virus_folder/$run_id.txt"
+            # Fetch metadata using efetch and save it to an XML file
+            efetch -db sra -id "$run_id" -format summary > "$virus_folder/$run_id.xml"
 
-            # Remove the header line from each metadata file
-            sed -i '1d' "$virus_folder/$run_id.txt"
-
-            # Process the metadata file (example: print the first few lines)
-            echo "Processing metadata for $run_id:"
-            head "$virus_folder/$run_id.txt"
+            # Check the exit status of the efetch command
+            if [ $? -ne 0 ]; then
+                log_error "Failed to fetch metadata for $run_id"
+                continue  # Skip to the next iteration if there's an error
+            fi
         fi
     done < "$csv_file"
+done
 
-    # Combine files within each virus folder (excluding headers)
-    tail -n +2 "$virus_folder"/*.txt > "$virus_folder/combined_metadata.txt"
+# Merge outputs for each virus family
+for family_folder in "$metadata_folder"/*; do
+    family=$(basename "$family_folder")
+    merged_file="$metadata_folder/${family}_merged.xml"
+
+    # Combine files within each virus family
+    cat "$family_folder"/*.xml > "$merged_file"
+
+    # Print status message
+    echo "Merged metadata for $family saved to: $merged_file"
 done
