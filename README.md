@@ -1,5 +1,5 @@
 # Serratus for Virus Discovery
-This repository contains a collection of scripts for the RNA virus mining via Serratus. It identifies novel viruses and extracts metadata from the Sequence Read Archive (SRA). The project is organized into several scripts, each serving a specific purpose. Below is an overview of each script and its functionality.
+This repository contains a collection of scripts for the RNA virus mining via Serratus. It identifies novel viruses and extracts metadata from the Sequence Read Archive (SRA). The project is organized into several scripts, each serving a specific purpose. They have been written to run on a HPC RedHat Linux system without sudo rights. User installed tools are used, as well as global environment modules.  Below is an overview of each script and its functionality.
 
 ## Configuration File (config.sh)
 

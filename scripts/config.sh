@@ -1,31 +1,30 @@
 #!/bin/bash
 
 # Set project directories and paths
-my_dir="/home/people/fitzpatria/scratch"
-project_dir="Serratus"
+PROJECT_BASE_PATH="/home/people/fitzpatria/scratch/Serratus"
 sOTU="/home/people/fitzpatria/databases/palmdb-main/2021-03-14/uniques.fa"
-source_info="$my_dir/$project_dir/source_info.txt"
-pysradb_dir="/home/people/fitzpatria/tools/pysradb"
-convert_fasta="/home/people/fitzpatria/scratch/Serratus/scripts/convert_csv_to_fasta.py"
-sql_serratus="/home/people/fitzpatria/scratch/Serratus/scripts/sql_query_serratus.py"
+SOURCE_INFO_FILE="$PROJECT_BASE_PATH/source_info.txt"
+PYSRADB_DIR="/home/people/fitzpatria/tools/pysradb"
+CONVERT_FASTA_SCRIPT="$PROJECT_BASE_PATH/scripts/convert_csv_to_fasta.py"
+SQL_SERRATUS_SCRIPT="$PROJECT_BASE_PATH/scripts/sql_query_serratus.py"
 
 # Ensure project directory structure
-project_structure=("data" "logs" "plots" "raw_data" "references" "results" "scripts")
+PROJECT_STRUCTURE=("data" "logs" "plots" "raw_data" "references" "results" "scripts")
 
 # Create project directory if it doesn't exist
-if [ ! -d "$my_dir/$project_dir" ]; then
-    mkdir -p "$my_dir/$project_dir"
+if [ ! -d "$PROJECT_BASE_PATH" ]; then
+    mkdir -p "$PROJECT_BASE_PATH"
 fi
 
 # Move to the project directory
-cd "$my_dir/$project_dir" || exit
+cd "$PROJECT_BASE_PATH" || exit
 
 # Create subdirectories if they don't exist
-for subdir in "${project_structure[@]}"; do
+for subdir in "${PROJECT_STRUCTURE[@]}"; do
     if [ ! -d "$subdir" ]; then
         mkdir -p "$subdir"
     fi
 done
 
 # Print message indicating successful setup
-echo "Project directory structure is set up in $my_dir/$project_dir."
+echo "Project directory structure is set up in $PROJECT_BASE_PATH."
