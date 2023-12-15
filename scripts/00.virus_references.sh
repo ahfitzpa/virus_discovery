@@ -64,7 +64,7 @@ echo "Protein sequences for Peribunyaviride have been fetched and stored in $out
 echo "Protein sequences for phenuiviridae have been fetched and stored in $output_file_phenuiviridae."
 
 # Run palmscan for Peribunyaviride
-palmscan -search_pp "$output_file_peribunyaviride" -hiconf -rdrp -ppout "$outdir/peribunyaviride/RdRp_pp_peribunyaviride.fa" -report "$outdir/peribunyaviride/RdRp_pp_peribunyaviride.txt" -fevout "$outdir/peribunyaviride/RdRp_pp_peribunyaviride.fev"
+palmscan2 -search_pp "$output_file_peribunyaviride" -hiconf -rdrp -ppout "$outdir/peribunyaviride/RdRp_pp_peribunyaviride.fa" -report "$outdir/peribunyaviride/RdRp_pp_peribunyaviride.txt" -fevout "$outdir/peribunyaviride/RdRp_pp_peribunyaviride.fev"
 
 # Run palmscan for Phenuiviridae
-palmscan -search_pp "$output_file_phenuiviridae" -hiconf -rdrp -ppout "$outdir/phenuiviridae/dRp_pp_phenuiviridae.fa" -report "$outdir/phenuiviridae/RdRp_pp_phenuiviridae.txt" -fevout "$outdir/phenuiviridae/pRdRp_pp_phenuiviridae.fev"
+palmscan2 -search_pp "$output_file_phenuiviridae" -hiconf -rdrp -ppout "$outdir/phenuiviridae/dRp_pp_phenuiviridae.fa" -report "$outdir/phenuiviridae/RdRp_pp_phenuiviridae.txt" -fevout "$outdir/phenuiviridae/pRdRp_pp_phenuiviridae.fev"
